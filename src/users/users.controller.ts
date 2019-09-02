@@ -53,7 +53,8 @@ export class UsersController {
 
     @Post('userDetails')
     // @UsePipes(new JoiValidationPipe({ userId: 0, userName: '嘉文四世', roleName: '德玛西亚', roleCode: 'DMXY' }))
-    @UsePipes(new ValidationPipe())
+    // @UsePipes(new ValidationPipe())
+    @UsePipes(ValidationPipe)
     @ApiResponse({ status: 200, description: '请求成功' })
     async userDetails(@Body() usersDetailsDto: UserDetailsDto, @Req() request) {
         // console.log('request.body===>>>', request.body);
