@@ -6,6 +6,7 @@ import { Logger } from '@nestjs/common';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { HTTPExceptionFilter } from './exceptions/HTTPException.filter';
 import { AllExceptionsFilter } from './exceptions/allExceptions.filter';
+import { ValidationPipe } from './pipe/validation.pipe';
 
 declare const module: any;
 
@@ -14,6 +15,7 @@ async function bootstrap() {
 
     app.setGlobalPrefix('dev');
     // app.useGlobalFilters(new HTTPExceptionFilter()); // 全局过滤器
+    // app.useGlobalPipes(new ValidationPipe());
     const { httpAdapter } = app.get(HttpAdapterHost);
     app.useGlobalFilters(new AllExceptionsFilter(httpAdapter)); // 基础过滤器
 

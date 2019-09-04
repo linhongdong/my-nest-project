@@ -25,6 +25,7 @@ import { ForbiddenException } from '../exceptions/forbidden.exception';
 import { HTTPExceptionFilter } from '../exceptions/HTTPException.filter';
 import { JoiValidationPipe } from '../pipe/joiValidation.pipe';
 import { ValidationPipe } from '../pipe/validation.pipe';
+import { ParseIntPipe } from '../pipe/parseInt.pipe';
 
 @ApiUseTags('用户')
 @ApiBearerAuth()
@@ -56,7 +57,7 @@ export class UsersController {
     // @UsePipes(new ValidationPipe())
     @UsePipes(ValidationPipe)
     @ApiResponse({ status: 200, description: '请求成功' })
-    async userDetails(@Body() usersDetailsDto: UserDetailsDto, @Req() request) {
+    async userDetails(@Body(new ParseIntPipe()) usersDetailsDto: UserDetailsDto, @Req() request) {
         // console.log('request.body===>>>', request.body);
         return [{ id: 1, name: '盲僧瞎子啊', age: 18, flag: 'userDetails' }];
     }
