@@ -23,9 +23,9 @@ import { AddUserDto } from './dto/addUser.dto';
 import { UsersService } from './users.service';
 import { ForbiddenException } from '../exceptions/forbidden.exception';
 import { HTTPExceptionFilter } from '../exceptions/HTTPException.filter';
-import { JoiValidationPipe } from '../pipe/joiValidation.pipe';
-import { ValidationPipe } from '../pipe/validation.pipe';
-import { ParseIntPipe } from '../pipe/parseInt.pipe';
+import { JoiValidationPipe } from '../pipes/joiValidation.pipe';
+import { ValidationPipe } from '../pipes/validation.pipe';
+import { ParseIntPipe } from '../pipes/parseInt.pipe';
 
 @ApiUseTags('用户')
 @ApiBearerAuth()

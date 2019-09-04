@@ -6,7 +6,7 @@ import { Logger } from '@nestjs/common';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { HTTPExceptionFilter } from './exceptions/HTTPException.filter';
 import { AllExceptionsFilter } from './exceptions/allExceptions.filter';
-import { ValidationPipe } from './pipe/validation.pipe';
+import { ValidationPipe } from './pipes/validation.pipe';
 
 declare const module: any;
 
