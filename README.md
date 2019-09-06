@@ -82,3 +82,16 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 $ npm run serve
 
 ```
+## vscode 调试
+
+1、打开命令面板（command+shift+p)，搜索‘Toggle Auto Attach’，选中后回车启用
+
+2、启用后vs code底部状态栏会有状态显： 示“自动附加：开”（Auto Attach:On）
+
+3、现在在终端里输入 npm run start:debug，vscode 会自动切换到调试模式，你可以根据需要进行断点调试了
+
+```bash
+# 
+$ npm run start:debug
+
+```
