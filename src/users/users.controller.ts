@@ -1,19 +1,33 @@
-import { Body, Controller, Get, Post, Req, Query, Param, HttpCode, Header, Res, HttpStatus, Delete, UsePipes, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Logger, Query, Param, HttpCode, Header, Res, HttpStatus, Delete, HttpException, UseFilters, UsePipes, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UserDetailsDto } from './dto/userDetails.dto';
 import { ApiBearerAuth, ApiImplicitParam, ApiImplicitQuery, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { UserRole } from './dto/userRole.dto';
+import { Users } from './users.interface';
 import { AddUserDto } from './dto/addUser.dto';
 import { UsersService } from './users.service';
 import { ForbiddenException } from '../exceptions/forbidden.exception';
+import { HTTPExceptionFilter } from '../exceptions/HTTPException.filter';
+import { JoiValidationPipe } from '../pipes/joiValidation.pipe';
 import { ValidationPipe } from '../pipes/validation.pipe';
 import { ParseIntPipe } from '../pipes/parseInt.pipe';
 import { RolesGuard } from '../guards/roles.guard';
 import { Roles } from '../decorators/roles.decorator';
+import { LoggingInterceptor } from '../interceptors/logging.interceptor';
+import { TransformInterceptor } from '../interceptors/transform.interceptor';
+import { ExcludeNullInterceptor } from '../interceptors/excludeNull.interceptor';
+import { ErrorsInterceptor } from '../interceptors/errors.interceptor';
+import { TimeoutInterceptor } from '../interceptors/timeout.interceptor';
 
 @ApiUseTags('用户')
 @ApiBearerAuth()
-// @UseFilters(new HTTPExceptionFilter())
 @UseGuards(RolesGuard)
+// @UseInterceptors(LoggingInterceptor)
+// @UseInterceptors(TransformInterceptor)
+// @UseInterceptors(ExcludeNullInterceptor)
+// @UseInterceptors(TimeoutInterceptor)
+@UseInterceptors(ErrorsInterceptor)
+// @UseInterceptors(new LoggingInterceptor())
+// @UseFilters(new HTTPExceptionFilter())
 @Controller('users')
 export class UsersController {
     // private userService = new UsersService();
@@ -30,21 +44,21 @@ export class UsersController {
     }
 
     @Get('userList')
-    async userList() {
+    async userList(@Req() request) {
         // console.log('===>>>', request.body);
         return this.userService.getUserList();
     }
 
-    // @ReflectMetadata('roles', ['admin'])
     @Roles('admin')
     @Post('userDetails')
     // @UsePipes(new JoiValidationPipe({ userId: 0, userName: '嘉文四世', roleName: '德玛西亚', roleCode: 'DMXY' }))
     // @UsePipes(new ValidationPipe())
     @UsePipes(ValidationPipe)
     @ApiResponse({ status: 200, description: '请求成功' })
-    async userDetails() {
+    async userDetails(@Body(new ParseIntPipe()) usersDetailsDto: UserDetailsDto, @Req() request) {
         // console.log('request.body===>>>', request.body);
         return [{ id: 1, name: '盲僧瞎子啊', age: 18, flag: 'userDetails' }];
+        // return null;
     }
 
     @Post('createUser')
@@ -62,14 +76,14 @@ export class UsersController {
     @Delete('deleteUser')
     @Header('Cache-Control', 'none')
     @ApiImplicitQuery({ name: 'role', enum: ['Admin', 'DMXY', 'AONY', 'AYD', 'FLEZD'] })
-    async deleteUser() {
+    async deleteUser(@Body() addUserDto: AddUserDto, @Req() request, @Query('role') role: UserRole = UserRole.dmxy) {
         // console.log('request.headers===>>>', request.headers);
         return this.userService.deleteUser(1);
     }
 
     @Post('user/:userId')
     @ApiImplicitParam({ name: 'userId', enum: [111, 222, 333, 444, 555, 666] })
-    async userItem(@Req() request) {
+    async userItem(@Body() addUserDto: AddUserDto, @Param('userId') userId, @Req() request, @Res() res) {
         console.log('request.param===>>>', request.params);
         // return [{ id: 1, name: '哈啊哈', age: 18, flag: `userId：${userId}` }]; // 使用了 @Res 后就必须用 res 返回，不然无法返回
         // res.status(HttpStatus.OK).json(['你瞅啥', `This action returns a #${userId}`]);
