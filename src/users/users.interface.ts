@@ -5,4 +5,5 @@ export interface Users {
     readonly epithet: string;
     readonly nickname: string;
     readonly flag?: any;
+    readonly password?: any;
 }

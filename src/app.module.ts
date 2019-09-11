@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { UsersController } from './users/users.controller';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-    imports: [UsersModule],
+    imports: [UsersModule, AuthModule],
     controllers: [AppController],
     providers: [AppService],
 })
@@ -21,5 +22,4 @@ export class AppModule implements NestModule {
             .forRoutes(UsersController);
         // return undefined;
     }
-
 }

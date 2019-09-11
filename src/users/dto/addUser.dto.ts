@@ -11,7 +11,7 @@ export class AddUserDto {
         example: '嘉文四世',
         required: false,
     })
-    readonly userName: number;
+    readonly userName: string;
     @ApiModelProperty({
         description: '用户角色名称',
         example: '德玛西亚',

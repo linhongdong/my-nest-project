@@ -1,4 +1,24 @@
-import { Body, Controller, Get, Post, Req, Logger, Query, Param, HttpCode, Header, Res, HttpStatus, Delete, HttpException, UseFilters, UsePipes, UseGuards, UseInterceptors } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Get,
+    Post,
+    Req,
+    Logger,
+    Query,
+    Param,
+    HttpCode,
+    Header,
+    Res,
+    HttpStatus,
+    Delete,
+    HttpException,
+    UseFilters,
+    UsePipes,
+    UseGuards,
+    UseInterceptors,
+    Inject,
+} from '@nestjs/common';
 import { UserDetailsDto } from './dto/userDetails.dto';
 import { ApiBearerAuth, ApiImplicitParam, ApiImplicitQuery, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { UserRole } from './dto/userRole.dto';
@@ -17,6 +37,8 @@ import { TransformInterceptor } from '../interceptors/transform.interceptor';
 import { ExcludeNullInterceptor } from '../interceptors/excludeNull.interceptor';
 import { ErrorsInterceptor } from '../interceptors/errors.interceptor';
 import { TimeoutInterceptor } from '../interceptors/timeout.interceptor';
+import { User } from '../decorators/user.decorator';
+import { AuthService } from '../auth/auth.service';
 
 @ApiUseTags('用户')
 @ApiBearerAuth()
@@ -31,6 +53,8 @@ import { TimeoutInterceptor } from '../interceptors/timeout.interceptor';
 @Controller('users')
 export class UsersController {
     // private userService = new UsersService();
+
+    // @Inject(forwardRef(() => AuthService)) private readonly authService: AuthService
     constructor(private readonly userService: UsersService) {}
 
     // @Get()
@@ -46,6 +70,13 @@ export class UsersController {
     @Get('userList')
     async userList(@Req() request) {
         // console.log('===>>>', request.body);
+        return this.userService.getUserList();
+    }
+
+    @Post('userList2')
+    async userList2(@Body() usersDetailsDto: UserDetailsDto, @User('roleCode') user: Users) {
+        // console.log('===>>>', request.body);
+        console.log('user ===>>>', user);
         return this.userService.getUserList();
     }
 
@@ -90,4 +121,11 @@ export class UsersController {
         // throw new HttpException({ status: HttpStatus.FORBIDDEN, error: '我是 403 哇哈哈哈哈' }, HttpStatus.FORBIDDEN);
         throw new ForbiddenException('我是 403 哇哈哈哈哈');
     }
+
+    // @Post('findOne')
+    // @ApiImplicitParam({ name: 'userId', enum: [111, 222, 333, 444, 555, 666] })
+    // async findOne(@Body() addUserDto: AddUserDto) {
+    //     // return this.userService.findOne(addUserDto.userName);
+    //     return this.authService.validateUser(addUserDto.userName, '1234');
+    // }
 }

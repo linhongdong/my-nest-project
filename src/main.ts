@@ -8,6 +8,7 @@ import { HTTPExceptionFilter } from './exceptions/HTTPException.filter';
 import { AllExceptionsFilter } from './exceptions/allExceptions.filter';
 import { ValidationPipe } from './pipes/validation.pipe';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
+import { AuthModule } from './auth/auth.module';
 
 declare const module: any;
 
@@ -27,12 +28,12 @@ async function bootstrap() {
         .setVersion('1.0')
         .addBearerAuth('lhd')
         // .addTag('users') // match tags in controllers
-        .setContactEmail('656487723@qq.com')
+        .setContactEmail('1625125333@qq.com')
         // 设置基础路径  与全局的前缀对应，不设置是没有的
         .setBasePath('dev')
         .build();
 
-    const document = SwaggerModule.createDocument(app, apiOptions, { include: [UsersModule] });
+    const document = SwaggerModule.createDocument(app, apiOptions, { include: [AuthModule, UsersModule] });
     SwaggerModule.setup('swagger/api/', app, document);
 
     // app.use(Logger);
