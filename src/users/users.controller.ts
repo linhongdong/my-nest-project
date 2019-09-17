@@ -39,6 +39,7 @@ import { ErrorsInterceptor } from '../interceptors/errors.interceptor';
 import { TimeoutInterceptor } from '../interceptors/timeout.interceptor';
 import { User } from '../decorators/user.decorator';
 import { AuthService } from '../auth/auth.service';
+import { CreateUserDto } from './dto/createUser.dto';
 
 @ApiUseTags('用户')
 @ApiBearerAuth()
@@ -63,8 +64,9 @@ export class UsersController {
     // }
     @Get()
     findAll(@Res() res) {
-        res.status(HttpStatus.OK).json(['你瞅啥']);
+        // res.status(HttpStatus.OK).json(['你瞅啥']);
         // res.status(HttpStatus.CREATED).send();
+        return this.userService.findAll();
     }
 
     @Get('userList')
@@ -94,14 +96,18 @@ export class UsersController {
 
     @Post('createUser')
     @HttpCode(200)
-    @ApiImplicitQuery({ name: 'role', enum: ['Admin', 'DMXY', 'AONY', 'AYD', 'FLEZD'] })
-    async createUser(@Query('role') role: UserRole = UserRole.dmxy) {
+    // @ApiImplicitQuery({ name: 'role', enum: ['Admin', 'DMXY', 'AONY', 'AYD', 'FLEZD'] })
+    // async createUser(@Query('role') role: UserRole = UserRole.dmxy) {
+    //     // role returns: UserRole.Admin, UserRole.Moderator OR UserRole.User
+    //     if ('Admin' === role) {
+    //         return [{ message: '管理员' }];
+    //     } else {
+    //         return [{ role: UserRole.dmxy }];
+    //     }
+    // }
+    async createUser(@Body() createUserDto: CreateUserDto) {
         // role returns: UserRole.Admin, UserRole.Moderator OR UserRole.User
-        if ('Admin' === role) {
-            return [{ message: '管理员' }];
-        } else {
-            return [{ role: UserRole.dmxy }];
-        }
+        return this.userService.createUser(createUserDto);
     }
 
     @Delete('deleteUser')

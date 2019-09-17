@@ -26,7 +26,8 @@ async function bootstrap() {
         .setTitle('Test API Doc')
         .setDescription('my-nest-project API Info')
         .setVersion('1.0')
-        .addBearerAuth('lhd')
+        // .addBearerAuth('lhd')
+        .addBearerAuth()
         // .addTag('users') // match tags in controllers
         .setContactEmail('1625125333@qq.com')
         // 设置基础路径  与全局的前缀对应，不设置是没有的

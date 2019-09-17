@@ -5,7 +5,7 @@ import { BaseExceptionFilter } from '@nestjs/core';
 export class AllExceptionsFilter extends BaseExceptionFilter {
     catch(exception: any, host: ArgumentsHost) {
         super.catch(exception, host);
-        console.log('全基础过滤器 AllExceptionsFilter===>>>', exception);
+        console.log('全基础过滤器 AllExceptionsFilter===>>>', exception.response);
         // console.log('exception===>>>', exception.response);
     }
 }

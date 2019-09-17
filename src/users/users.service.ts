@@ -1,9 +1,15 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Users } from './users.interface';
 import { LoginDto } from '../auth/dto/login.dto';
+import { UserEntity } from '../entitys/user.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CreateUserDto } from './dto/createUser.dto';
 
 @Injectable()
 export class UsersService implements OnModuleInit {
+    constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {}
+
     onModuleInit() {
         console.log(`===>>> The module has been initialized.`);
     }
@@ -33,13 +39,18 @@ export class UsersService implements OnModuleInit {
         },
     ];
 
-    createUser(user: Users) {
-        this.userList.push(user);
+    async createUser(user: CreateUserDto) {
+        // this.userList.push(user);
+        const newUser = this.userRepository.create(user);
+        await this.userRepository.save(newUser);
+        return newUser;
     }
 
-    getUserList() {
+    async getUserList() {
         // console.log('userList===>>>', this.userList);
-        return this.userList;
+        // return this.userList;
+        console.log('================<<<');
+        return await this.userRepository.find({ where: { username: 'lhd' } });
     }
 
     deleteUser(id: number) {
@@ -54,5 +65,12 @@ export class UsersService implements OnModuleInit {
 
     async findOne(username: string): Promise<LoginDto | undefined> {
         return this.users.find(user => user.username === username);
+    }
+
+    async findAll(): Promise<UserEntity[]> {
+        let username: string = 'lhd';
+        console.log(username);
+        // return await this.userRepository.find({ where: { username: 'lhd' } });
+        return;
     }
 }

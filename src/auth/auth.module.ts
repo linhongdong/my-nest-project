@@ -6,6 +6,7 @@ import { AuthController } from './auth.controller';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import Constants from '../common/constants';
+import { JwtStrategy } from './jwt.strategy';
 
 // forwardRef(() => UsersModule),
 @Module({
@@ -14,11 +15,11 @@ import Constants from '../common/constants';
         PassportModule,
         JwtModule.register({
             secret: Constants.jwtSecret,
-            signOptions: { expiresIn: '60s' },
+            signOptions: { expiresIn: Constants.jwtExpiresIn },
         }),
     ],
     controllers: [AuthController],
-    providers: [AuthService, LocalStrategy],
+    providers: [AuthService, LocalStrategy, JwtStrategy],
     exports: [AuthService],
 })
 export class AuthModule {}
