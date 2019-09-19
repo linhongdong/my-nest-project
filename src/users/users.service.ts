@@ -1,14 +1,17 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, OnModuleInit, Inject } from '@nestjs/common';
 import { Users } from './users.interface';
 import { LoginDto } from '../auth/dto/login.dto';
-import { UserEntity } from '../entitys/user.entity';
+import { UserEntity } from '../db/entities/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/createUser.dto';
+import Constants from '../common/constants';
+// import { dbProviders } from '../db/db.providers';
 
 @Injectable()
 export class UsersService implements OnModuleInit {
-    constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {}
+    // constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {}
+    constructor(@Inject('USER_REPOSITORY') private readonly userRepository: Repository<UserEntity>) {}
 
     onModuleInit() {
         console.log(`===>>> The module has been initialized.`);
@@ -68,9 +71,12 @@ export class UsersService implements OnModuleInit {
     }
 
     async findAll(): Promise<UserEntity[]> {
-        let username: string = 'lhd';
-        console.log(username);
+        // const username: string = 'lhd';
+        // console.log(username);
         // return await this.userRepository.find({ where: { username: 'lhd' } });
+        // console.log('====================>>>', Object.assign([], ...dbProviders));
+        console.log('====================>>>', Constants.db);
+        console.log('====================>>>', Constants.db.DATABASE_CONNECTION);
         return;
     }
 }
