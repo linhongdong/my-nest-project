@@ -3,10 +3,8 @@ import { Users } from './users.interface';
 import { LoginDto } from '../auth/dto/login.dto';
 import { UserEntity } from '../db/entities/user.entity';
 import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
+// import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/createUser.dto';
-import Constants from '../common/constants';
-// import { dbProviders } from '../db/db.providers';
 
 @Injectable()
 export class UsersService implements OnModuleInit {
@@ -53,7 +51,8 @@ export class UsersService implements OnModuleInit {
         // console.log('userList===>>>', this.userList);
         // return this.userList;
         console.log('================<<<');
-        return await this.userRepository.find({ where: { username: 'lhd' } });
+        // return await this.userRepository.find({ where: { username: 'lhd' } });
+        return await this.userRepository.find();
     }
 
     deleteUser(id: number) {
@@ -75,8 +74,6 @@ export class UsersService implements OnModuleInit {
         // console.log(username);
         // return await this.userRepository.find({ where: { username: 'lhd' } });
         // console.log('====================>>>', Object.assign([], ...dbProviders));
-        console.log('====================>>>', Constants.db);
-        console.log('====================>>>', Constants.db.DATABASE_CONNECTION);
         return;
     }
 }
