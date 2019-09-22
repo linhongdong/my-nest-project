@@ -10,8 +10,8 @@ import { DbModule } from '../db/db.module';
 // imports: [forwardRef(() => AuthModule)],
 @Global()
 @Module({
-    // imports: [TypeOrmModule.forFeature([UserEntity])],
-    imports: [DbModule],
+    imports: [TypeOrmModule.forFeature([UserEntity])],
+    // imports: [DbModule],
     controllers: [UsersController],
     providers: [UsersService, { provide: APP_FILTER, useClass: HTTPExceptionFilter }],
     exports: [UsersService],

@@ -7,31 +7,20 @@ import { UsersController } from './users/users.controller';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-import { UserEntity } from './db/entities/user.entity';
+import { Constants } from './common/constants';
+import { Config } from '../config';
 
 @Module({
     imports: [
         UsersModule,
         AuthModule,
-        // TypeOrmModule.forRoot({
-        //     type: 'mysql',
-        //     host: '127.0.0.1',
-        //     port: 3306,
-        //     username: 'root',
-        //     password: '573532',
-        //     database: 'my_nest',
-        //     logging: true,
-        //     entityPrefix: 'mn_',
-        //     entities: [UserEntity],
-        //     charset: 'utf8mb4',
-        //     synchronize: true,
-        // }),
+        TypeOrmModule.forRoot(Object.assign(Config.MYSQL_OPTIONS, { entities: Constants.db.entities })),
     ],
     controllers: [AppController],
     providers: [AppService],
 })
 export class AppModule implements NestModule {
-    // constructor(private readonly connection: Connection) {}
+    constructor(private readonly connection: Connection) {}
 
     configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {
         consumer

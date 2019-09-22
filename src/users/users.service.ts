@@ -5,14 +5,15 @@ import { UserEntity } from '../db/entities/user.entity';
 import { Repository } from 'typeorm';
 // import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/createUser.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UsersService implements OnModuleInit {
-    // constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {}
-    constructor(@Inject('USER_REPOSITORY') private readonly userRepository: Repository<UserEntity>) {}
+    constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {}
+    // constructor(@Inject('USER_REPOSITORY') private readonly userRepository: Repository<UserEntity>) {}
 
     onModuleInit() {
-        console.log(`===>>> The module has been initialized.`);
+        // console.log(`===>>> The module has been initialized.`);
     }
     private readonly userList: Users[] = [
         { id: 1, name: '李青', age: 36, epithet: '盲僧', nickname: '瞎子' },
@@ -50,7 +51,7 @@ export class UsersService implements OnModuleInit {
     async getUserList() {
         // console.log('userList===>>>', this.userList);
         // return this.userList;
-        console.log('================<<<');
+
         // return await this.userRepository.find({ where: { username: 'lhd' } });
         return await this.userRepository.find();
     }
