@@ -1,6 +1,6 @@
-import DbConstants from './db.constants';
+import { DbConstants } from './db.constants';
 
-export default class Constants {
+export class Constants {
     // db.constants.ts 数据库常量
     static readonly db: DbConstants = new DbConstants();
 }

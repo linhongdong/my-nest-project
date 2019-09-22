@@ -3,7 +3,6 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiUseTags, ApiBearerAuth } from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
 import { AuthService } from './auth.service';
-import Constants from '../common/constants';
 
 @ApiUseTags('认证')
 @ApiBearerAuth()
