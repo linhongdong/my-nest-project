@@ -9,6 +9,7 @@ import { AllExceptionsFilter } from './exceptions/allExceptions.filter';
 import { ValidationPipe } from './pipes/validation.pipe';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { AuthModule } from './auth/auth.module';
+import { HeroModule } from './hero/hero.module';
 
 declare const module: any;
 
@@ -34,7 +35,7 @@ async function bootstrap() {
         .setBasePath('dev')
         .build();
 
-    const document = SwaggerModule.createDocument(app, apiOptions, { include: [AuthModule, UsersModule] });
+    const document = SwaggerModule.createDocument(app, apiOptions, { include: [AuthModule, HeroModule, UsersModule] });
     SwaggerModule.setup('swagger/api/', app, document);
 
     // app.use(Logger);

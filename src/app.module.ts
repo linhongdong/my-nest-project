@@ -9,12 +9,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { Constants } from './common/constants';
 import { Config } from '../config';
+import { HeroModule } from './hero/hero.module';
 
 @Module({
     imports: [
+        TypeOrmModule.forRoot(Object.assign(Config.MYSQL_OPTIONS, { entities: Constants.db.entities })),
         UsersModule,
         AuthModule,
-        TypeOrmModule.forRoot(Object.assign(Config.MYSQL_OPTIONS, { entities: Constants.db.entities })),
+        HeroModule,
     ],
     controllers: [AppController],
     providers: [AppService],

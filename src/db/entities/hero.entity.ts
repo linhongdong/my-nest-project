@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { FactionEntity } from './faction.entity';
 
 @Entity('hero')
 export class HeroEntity {
@@ -9,6 +10,11 @@ export class HeroEntity {
         comment: '英雄名字',
     })
     heroname: string;
+
+    @Column({
+        comment: '英雄编码',
+    })
+    heronCode: string;
 
     @Column({
         comment: '性别',
@@ -29,4 +35,16 @@ export class HeroEntity {
         comment: '昵称',
     })
     nickname: string;
+
+    // @Column({
+    //     comment: '所属阵营',
+    // })
+    // ownFaction: string;
+    // @OneToOne(type => FactionEntity)
+    // @JoinColumn()
+    // ownFaction: FactionEntity;
+
+    // 对应阵营表的 id
+    @ManyToOne(type => FactionEntity, faction => faction.hero)
+    faction: FactionEntity;
 }
