@@ -2,8 +2,8 @@ import { ApiUseTags, ApiBearerAuth } from '@nestjs/swagger';
 import { Controller, UseGuards, Post, Body, Get, Request } from '@nestjs/common';
 import { HeroService } from './hero.service';
 import { HerorDto } from './dto/hero.dto';
-import { HeroEntity } from '../db/entities/hero.entity';
-import { FactionEntity } from '../db/entities/faction.entity';
+import { HeroEntity } from '../entities/hero.entity';
+import { FactionEntity } from '../entities/faction.entity';
 
 @ApiUseTags('英雄')
 // @ApiBearerAuth()

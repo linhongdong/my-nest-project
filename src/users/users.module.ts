@@ -4,7 +4,7 @@ import { UsersService } from './users.service';
 import { APP_FILTER } from '@nestjs/core';
 import { HTTPExceptionFilter } from '../exceptions/HTTPException.filter';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '../db/entities/user.entity';
+import { UserEntity } from '../entities/user.entity';
 import { DbModule } from '../db/db.module';
 
 // imports: [forwardRef(() => AuthModule)],

@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, PrimaryColumn, ManyToOne, OneToMany } from 'typeorm';
-import { type } from 'os';
 import { HeroEntity } from './hero.entity';
 
 @Entity('faction')

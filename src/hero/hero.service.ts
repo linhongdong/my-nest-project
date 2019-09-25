@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { HeroEntity } from '../db/entities/hero.entity';
+import { HeroEntity } from '../entities/hero.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { HerorDto } from './dto/hero.dto';
-import { FactionEntity } from '../db/entities/faction.entity';
+import { FactionEntity } from '../entities/faction.entity';
 
 @Injectable()
 export class HeroService {

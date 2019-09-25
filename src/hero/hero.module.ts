@@ -2,8 +2,8 @@ import { HeroService } from './hero.service';
 import { HeroController } from './hero.controller';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { HeroEntity } from '../db/entities/hero.entity';
-import { FactionEntity } from '../db/entities/faction.entity';
+import { HeroEntity } from '../entities/hero.entity';
+import { FactionEntity } from '../entities/faction.entity';
 
 @Module({
     imports: [TypeOrmModule.forFeature([HeroEntity, FactionEntity])],
