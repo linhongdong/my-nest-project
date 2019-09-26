@@ -1,9 +1,15 @@
-import { ArgumentMetadata, BadRequestException, PipeTransform, Injectable } from '@nestjs/common';
+import {
+    ArgumentMetadata,
+    BadRequestException,
+    PipeTransform,
+    Injectable,
+    PayloadTooLargeException,
+} from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 @Injectable()
 export class ValidationPipe implements PipeTransform {
-    async transform(value: any, { metatype }: ArgumentMetadata): Promise<any> {
+    /* async transform(value: any, { metatype }: ArgumentMetadata): Promise<any> {
         if (!metatype || !this.toValidate(metatype)) {
             return value;
         }
@@ -21,5 +27,19 @@ export class ValidationPipe implements PipeTransform {
     private toValidate(metatype: any): boolean {
         const types = [String, Boolean, Number, Array, Object];
         return !types.find((type) => metatype === type);
+    } */
+
+    transform(value: any, metadata: ArgumentMetadata) {
+        console.log('value===>>>', value);
+        console.log('metadata===>>>', metadata);
+        if (metadata.type === 'query') {
+            try {
+                return JSON.parse(value);
+            } catch (error) {
+                throw new BadRequestException();
+            }
+        } else {
+            throw new PayloadTooLargeException();
+        }
     }
 }

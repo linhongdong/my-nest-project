@@ -10,6 +10,7 @@ import { Connection } from 'typeorm';
 import { Constants } from './common/constants';
 import { Config } from '../config';
 import { HeroModule } from './hero/hero.module';
+import { MicroServiceModule } from './microservice/microservice.module';
 
 @Module({
     imports: [
@@ -17,6 +18,7 @@ import { HeroModule } from './hero/hero.module';
         UsersModule,
         AuthModule,
         HeroModule,
+        MicroServiceModule,
     ],
     controllers: [AppController],
     providers: [AppService],

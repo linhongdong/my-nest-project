@@ -10,12 +10,19 @@ import { ValidationPipe } from './pipes/validation.pipe';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { HeroModule } from './hero/hero.module';
+import { Transport } from '@nestjs/common/enums/transport.enum';
+import { MicroServiceModule } from './microservice/microservice.module';
 
 declare const module: any;
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
+    // 运行多种服务（运行微服务）
+    const microservice = app.connectMicroservice({ transport: Transport.TCP });
+    await app.startAllMicroservicesAsync();
+
+    // 全局前缀
     app.setGlobalPrefix('dev');
     // app.useGlobalFilters(new HTTPExceptionFilter()); // 全局过滤器
     // app.useGlobalPipes(new ValidationPipe());
@@ -35,16 +42,31 @@ async function bootstrap() {
         .setBasePath('dev')
         .build();
 
-    const document = SwaggerModule.createDocument(app, apiOptions, { include: [AuthModule, HeroModule, UsersModule] });
+    const document = SwaggerModule.createDocument(app, apiOptions, {
+        include: [AuthModule, HeroModule, UsersModule, MicroServiceModule],
+    });
     SwaggerModule.setup('swagger/api/', app, document);
 
     // app.use(Logger);
+    // 端口号
     await app.listen(3000);
+
     Logger.log(`Server running on http://localhst:3000`, 'server');
     if (module.hot) {
         module.hot.accept();
         module.hot.dispose(() => app.close());
     }
 }
+
+// 微服务
+/* async function bootstrap() {
+    const app = await NestFactory.createMicroservice(AppModule, { transport: Transport.TCP });
+
+    await app.listen(() => Logger.log(`微服务正在监听`, 'microservices'));
+    if (module.hot) {
+        module.hot.accept();
+        module.hot.dispose(() => app.close());
+    }
+} */
 
 bootstrap();
