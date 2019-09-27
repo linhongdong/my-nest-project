@@ -1,7 +1,7 @@
-import { HeroEntity } from '../entities/hero.entity';
-import { UserEntity } from '../entities/user.entity';
-import { FactionEntity } from '../entities/faction.entity';
-import { TeamEntity } from '../entities/team.entity';
+import { HeroEntity } from './entities/hero.entity';
+import { UserEntity } from './entities/user.entity';
+import { FactionEntity } from './entities/faction.entity';
+import { TeamEntity } from './entities/team.entity';
 
 export class DbConstants {
     readonly entities: any[] = [UserEntity, HeroEntity, FactionEntity, TeamEntity];

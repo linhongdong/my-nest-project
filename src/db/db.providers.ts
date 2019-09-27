@@ -1,6 +1,6 @@
 import { createConnection, Connection, ConnectionOptions } from 'typeorm';
-import { UserEntity } from '../entities/user.entity';
-import { HeroEntity } from '../entities/hero.entity';
+import { UserEntity } from '../common/entities/user.entity';
+import { HeroEntity } from '../common/entities/hero.entity';
 import { Config } from '../../config';
 import { Constants } from '../common/constants';
 

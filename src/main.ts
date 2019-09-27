@@ -4,15 +4,15 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { UsersModule } from './users/users.module';
 import { Logger } from '@nestjs/common';
 import { LoggerMiddleware } from './middleware/logger.middleware';
-import { HTTPExceptionFilter } from './exceptions/HTTPException.filter';
-import { AllExceptionsFilter } from './exceptions/allExceptions.filter';
+import { HTTPExceptionFilter } from './common/exceptions/HTTPException.filter';
+import { AllExceptionsFilter } from './common/exceptions/allExceptions.filter';
 import { ValidationPipe } from './pipes/validation.pipe';
-import { LoggingInterceptor } from './interceptors/logging.interceptor';
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { HeroModule } from './hero/hero.module';
 import { Transport } from '@nestjs/common/enums/transport.enum';
 import { MicroServiceModule } from './microservice/microservice.module';
-import { TransformInterceptor } from './interceptors/transform.interceptor';
+import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 
 declare const module: any;
 

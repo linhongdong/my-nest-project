@@ -1,17 +1,21 @@
 import { Injectable, NestInterceptor, ExecutionContext, CallHandler, HttpStatus } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Constants } from '../constants';
 
 export interface Response<T> {
     data: T;
+    code: number;
 }
 
 @Injectable()
-export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> {
+export class TransformInterceptor<T> implements NestInterceptor<T, Response<any>> {
     intercept(context: ExecutionContext, next: CallHandler): Observable<Response<T>> {
-        // const request = context.switchToHttp().getRequest();
+        const reqt = context.switchToHttp().getRequest();
         const res = context.switchToHttp().getResponse();
-        // console.log('next===>>>', next.handle());
+        // res.status();
+        // res.headers('Cache-Control', 'none');
+        // console.log('next===>>>', res.headers('Cache-Control', 'none'));
         // return next.handle();
         return next.handle().pipe(
             map(data => {
@@ -38,7 +42,7 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
         return {
             timestamp: new Date().getTime(),
             code: HttpStatus.NO_CONTENT,
-            message: '没有查询到数据',
+            message: Constants.NO_DATA_FOUND,
             data: null,
         };
     }
@@ -47,6 +51,13 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
      * @param data 要返回的数据
      */
     private normalContent(data: any) {
-        return { timestamp: new Date().getTime(), code: HttpStatus.OK, message: 'success', data };
+        const time = new Date().toISOString();
+        console.log('===>>>', time);
+        return {
+            timestamp: new Date().toLocaleString(),
+            code: HttpStatus.OK,
+            message: Constants.REQUEST_SUCCESS,
+            data,
+        };
     }
 }

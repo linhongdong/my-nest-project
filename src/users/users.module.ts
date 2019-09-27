@@ -2,9 +2,9 @@ import { Global, Module } from '@nestjs/common';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { APP_FILTER } from '@nestjs/core';
-import { HTTPExceptionFilter } from '../exceptions/HTTPException.filter';
+import { HTTPExceptionFilter } from '../common/exceptions/HTTPException.filter';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '../entities/user.entity';
+import { UserEntity } from '../common/entities/user.entity';
 import { DbModule } from '../db/db.module';
 
 // imports: [forwardRef(() => AuthModule)],

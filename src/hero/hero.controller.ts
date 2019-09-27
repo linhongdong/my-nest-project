@@ -1,9 +1,9 @@
 import { ApiUseTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { Controller, UseGuards, Post, Body, Get, Request } from '@nestjs/common';
+import { Controller, UseGuards, Post, Body, Get, Request, Header } from '@nestjs/common';
 import { HeroService } from './hero.service';
 import { HerorDto } from './dto/hero.dto';
-import { HeroEntity } from '../entities/hero.entity';
-import { FactionEntity } from '../entities/faction.entity';
+import { HeroEntity } from '../common/entities/hero.entity';
+import { FactionEntity } from '../common/entities/faction.entity';
 
 @ApiUseTags('英雄')
 // @ApiBearerAuth()
@@ -32,6 +32,8 @@ export class HeroController {
         return this.heroService.allFaction();
     }
 
+    @Header('Date', '1009')
+    @Header('Cache-Control', 'none')
     @ApiOperation({
         title: '获取全部英雄',
         description: '获取全部英雄信息',

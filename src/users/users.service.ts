@@ -1,7 +1,7 @@
 import { Injectable, OnModuleInit, Inject } from '@nestjs/common';
 import { Users } from './users.interface';
 import { LoginDto } from '../auth/dto/login.dto';
-import { UserEntity } from '../entities/user.entity';
+import { UserEntity } from '../common/entities/user.entity';
 import { Repository } from 'typeorm';
 // import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/createUser.dto';
