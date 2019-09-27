@@ -1,20 +1,20 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, PrimaryColumn } from 'typeorm';
 import { FactionEntity } from './faction.entity';
 
 @Entity('hero')
 export class HeroEntity {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ name: '英雄 id' })
     id: number;
+
+    @PrimaryColumn({
+        comment: '英雄编码',
+    })
+    heronCode: string;
 
     @Column({
         comment: '英雄名字',
     })
     heroname: string;
-
-    @Column({
-        comment: '英雄编码',
-    })
-    heronCode: string;
 
     @Column({
         comment: '性别',

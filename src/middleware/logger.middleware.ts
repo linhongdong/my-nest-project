@@ -7,7 +7,7 @@ export class LoggerMiddleware implements NestMiddleware {
         console.log('我是中间件......');
         // res.status(HttpStatus.OK).json(['你瞅啥']);
         // console.log('req.body===>>>', req.body);
-        // console.log('res.body===>>>', res);
+        // console.log('res===>>>', res);
         next();
     }
 }

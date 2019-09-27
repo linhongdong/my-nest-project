@@ -9,9 +9,13 @@ import { FactionEntity } from '../entities/faction.entity';
 export class HeroService {
     constructor(
         @InjectRepository(HeroEntity) private readonly heroRepository: Repository<HeroEntity>,
-        @InjectRepository(FactionEntity) private readonly factionRepository: Repository<FactionEntity>
+        @InjectRepository(FactionEntity) private readonly factionRepository: Repository<FactionEntity>,
     ) {}
 
+    /**
+     * 创建英雄
+     * @param hero 英雄信息
+     */
     async createHero(hero: HerorDto) {
         // const faction = await this.allFaction();
         console.log('hero===>>>', hero);
@@ -34,7 +38,19 @@ export class HeroService {
         return newhero;
     }
 
-    // async allFaction() {
-    //     return await this.factionRepository.find({ where: { factionCode: 'ZY_DMXY' } });
-    // }
+    /**
+     * 获取全部阵营
+     */
+    async allFaction() {
+        // return await this.factionRepository.find({ where: { factionCode: 'ZY_DMXY' } });
+        return await this.factionRepository.find();
+    }
+
+    /**
+     * 获取全部英雄
+     */
+    async allHero() {
+        // return await this.factionRepository.find({ where: { factionCode: 'ZY_DMXY' } });
+        return await this.heroRepository.find();
+    }
 }

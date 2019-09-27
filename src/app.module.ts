@@ -11,6 +11,7 @@ import { Constants } from './common/constants';
 import { Config } from '../config';
 import { HeroModule } from './hero/hero.module';
 import { MicroServiceModule } from './microservice/microservice.module';
+import { HeroController } from './hero/hero.controller';
 
 @Module({
     imports: [
@@ -33,7 +34,7 @@ export class AppModule implements NestModule {
             // .forRoutes('users');
             // .exclude({ path: 'users', method: RequestMethod.DELETE })
             // .forRoutes({ path: 'users', method: RequestMethod.ALL });
-            .forRoutes(UsersController);
+            .forRoutes(UsersController, HeroController);
         // return undefined;
     }
 }

@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { HeroModule } from './hero/hero.module';
 import { Transport } from '@nestjs/common/enums/transport.enum';
 import { MicroServiceModule } from './microservice/microservice.module';
+import { TransformInterceptor } from './interceptors/transform.interceptor';
 
 declare const module: any;
 
@@ -27,6 +28,7 @@ async function bootstrap() {
     // app.useGlobalFilters(new HTTPExceptionFilter()); // 全局过滤器
     // app.useGlobalPipes(new ValidationPipe());
     // app.useGlobalInterceptors(new LoggingInterceptor()); // 全局拦截器
+    app.useGlobalInterceptors(new TransformInterceptor()); // 全局拦截器
     const { httpAdapter } = app.get(HttpAdapterHost);
     app.useGlobalFilters(new AllExceptionsFilter(httpAdapter)); // 基础过滤器
 
