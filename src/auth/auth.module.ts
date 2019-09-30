@@ -6,7 +6,7 @@ import { AuthController } from './auth.controller';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
-import { Config } from '../../config';
+import { Config } from '../config';
 
 // forwardRef(() => UsersModule),
 @Module({

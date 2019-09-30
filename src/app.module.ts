@@ -8,10 +8,10 @@ import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { Constants } from './common/constants';
-import { Config } from '../config';
 import { HeroModule } from './hero/hero.module';
 import { MicroServiceModule } from './microservice/microservice.module';
 import { HeroController } from './hero/hero.controller';
+import { Config } from './config';
 
 @Module({
     imports: [

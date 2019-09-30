@@ -1,5 +1,7 @@
 import { ConnectionOptions } from 'typeorm';
-
+/**
+ * 注意要把 config.ts 放在 src 目录下，不然 build 之后生成的 dist 目录里边会多一层 src 目录
+ */
 export class Config {
     // 项目端口号
     // static readonly PORT: string = 'secretKey';

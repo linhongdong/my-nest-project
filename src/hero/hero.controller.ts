@@ -32,8 +32,8 @@ export class HeroController {
         return this.heroService.allFaction();
     }
 
-    @Header('Date', '1009')
-    @Header('Cache-Control', 'none')
+    // @Header('Date', '1009')
+    // @Header('Cache-Control', 'none')
     @ApiOperation({
         title: '获取全部英雄',
         description: '获取全部英雄信息',

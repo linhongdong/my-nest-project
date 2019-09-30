@@ -14,7 +14,9 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<any>
         const reqt = context.switchToHttp().getRequest();
         const res = context.switchToHttp().getResponse();
         // res.status();
-        // res.headers('Cache-Control', 'none');
+        const time = new Date().toLocaleString();
+        res.header('Date', time);
+        // res.set('Date', time); // 用 set 也行
         // console.log('next===>>>', res.headers('Cache-Control', 'none'));
         // return next.handle();
         return next.handle().pipe(
@@ -25,9 +27,9 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<any>
                 // res.status(HttpStatus.NO_CONTENT);
                 // return { code: HttpStatus.NO_CONTENT, message: '没有查询到数据', data: null };
                 if (!!data) {
-                    return this.normalContent(data);
+                    return this.normalContent(data, time);
                 } else {
-                    return this.noContent();
+                    return this.noContent(time);
                 }
             }),
         );
@@ -37,10 +39,10 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<any>
     /**
      * 查询不到数据，返回值为空的情况
      */
-    private noContent() {
+    private noContent(time: string) {
         // return { code: HttpStatus.NO_CONTENT, message: '没有查询到数据', data: null };
         return {
-            timestamp: new Date().getTime(),
+            timestamp: time,
             code: HttpStatus.NO_CONTENT,
             message: Constants.NO_DATA_FOUND,
             data: null,
@@ -50,11 +52,9 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<any>
      * 正常返回数据
      * @param data 要返回的数据
      */
-    private normalContent(data: any) {
-        const time = new Date().toISOString();
-        console.log('===>>>', time);
+    private normalContent(data: any, time: string) {
         return {
-            timestamp: new Date().toLocaleString(),
+            timestamp: time,
             code: HttpStatus.OK,
             message: Constants.REQUEST_SUCCESS,
             data,

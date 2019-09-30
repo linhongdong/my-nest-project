@@ -1,7 +1,7 @@
 import { createConnection, Connection, ConnectionOptions } from 'typeorm';
 import { UserEntity } from '../common/entities/user.entity';
 import { HeroEntity } from '../common/entities/hero.entity';
-import { Config } from '../../config';
+import { Config } from '../config';
 import { Constants } from '../common/constants';
 
 // 所有实体类，对应
