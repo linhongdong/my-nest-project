@@ -32,14 +32,15 @@ export class ValidationPipe implements PipeTransform {
     transform(value: any, metadata: ArgumentMetadata) {
         console.log('value===>>>', value);
         console.log('metadata===>>>', metadata);
-        if (metadata.type === 'query') {
-            try {
-                return JSON.parse(value);
-            } catch (error) {
-                throw new BadRequestException();
-            }
-        } else {
-            throw new PayloadTooLargeException();
-        }
+        return value;
+        // if (metadata.type === 'query') {
+        //     try {
+        //         return JSON.parse(value);
+        //     } catch (error) {
+        //         throw new BadRequestException();
+        //     }
+        // } else {
+        //     throw new PayloadTooLargeException();
+        // }
     }
 }

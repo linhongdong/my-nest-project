@@ -53,4 +53,20 @@ export class HeroService {
         // return await this.factionRepository.find({ where: { factionCode: 'ZY_DMXY' } });
         return await this.heroRepository.find();
     }
+
+    /**
+     * 获取全部英雄
+     */
+    async allHeroError() {
+        // return await this.factionRepository.find({ where: { factionCode: 'ZY_DMXY' } });
+        // return await this.heroRepository.find();
+        return;
+    }
+    /**
+     * 获取单个阵营信息
+     */
+    async singleFaction(factionCode: string) {
+        return await this.factionRepository.find({ where: { factionCode } });
+        // return await this.heroRepository.find();
+    }
 }

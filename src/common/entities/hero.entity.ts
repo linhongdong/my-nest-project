@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, PrimaryColumn } from 'typeorm';
 import { FactionEntity } from './faction.entity';
+import { ApiModelProperty } from '@nestjs/swagger';
 
 @Entity('hero')
 export class HeroEntity {
@@ -42,7 +43,25 @@ export class HeroEntity {
     // ownFaction: string;
     // @OneToOne(type => FactionEntity)
     // @JoinColumn()
-    // ownFaction: FactionEntity;
+    // ownFaction: FactionßEntity;
+
+    @ApiModelProperty({
+        description: '对应的阵营 Id',
+        example: 1,
+    })
+    @Column({
+        comment: '对应的阵营 Id',
+    })
+    factionId: number;
+
+    @ApiModelProperty({
+        description: '对应的阵营 code',
+        example: 'ZY_DMXY',
+    })
+    @Column({
+        comment: '对应的阵营 code',
+    })
+    factionFactionCode: string;
 
     // 对应阵营表的 id
     @ManyToOne(type => FactionEntity, faction => faction.hero)

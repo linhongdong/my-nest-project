@@ -1,5 +1,5 @@
 import { ApiUseTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { Controller, UseGuards, Post, Body, Get, Request, Header } from '@nestjs/common';
+import { Controller, UseGuards, Post, Body, Get, Request, Header, BadRequestException } from '@nestjs/common';
 import { HeroService } from './hero.service';
 import { HerorDto } from './dto/hero.dto';
 import { HeroEntity } from '../common/entities/hero.entity';
@@ -41,5 +41,21 @@ export class HeroController {
     @Get('allHero')
     async allHero() {
         return this.heroService.allHero();
+    }
+
+    // @Header('Date', '1009')
+    // @Header('Cache-Control', 'none')
+    @ApiOperation({
+        title: '获取单个阵营',
+        description: '获取某个阵营信息',
+    })
+    @Post('singleFaction')
+    async singleFaction(@Body() hero: HeroEntity) {
+        console.log('singleFaction===>>>', hero.factionFactionCode);
+        if (hero && hero.factionFactionCode) {
+            return this.heroService.singleFaction(hero.factionFactionCode);
+        } else {
+            throw new BadRequestException('入参获取失败，请核对入参字段');
+        }
     }
 }

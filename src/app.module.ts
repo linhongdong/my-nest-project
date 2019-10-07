@@ -28,13 +28,15 @@ export class AppModule implements NestModule {
     constructor(private readonly connection: Connection) {}
 
     configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {
+        console.log('MiddlewareConsumer ===>>>');
         consumer
             .apply(LoggerMiddleware)
             // .with('AppModule')
             // .forRoutes('users');
             // .exclude({ path: 'users', method: RequestMethod.DELETE })
             // .forRoutes({ path: 'users', method: RequestMethod.ALL });
-            .forRoutes(UsersController, HeroController);
-        // return undefined;
+            // .forRoutes(UsersController, HeroController);
+            // return undefined;
+            .forRoutes({ path: '*', method: RequestMethod.ALL });
     }
 }

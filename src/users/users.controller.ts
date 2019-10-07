@@ -48,7 +48,7 @@ import { CreateUserDto } from './dto/createUser.dto';
 // @UseInterceptors(TransformInterceptor)
 // @UseInterceptors(ExcludeNullInterceptor)
 // @UseInterceptors(TimeoutInterceptor)
-@UseInterceptors(ErrorsInterceptor)
+// @UseInterceptors(ErrorsInterceptor)
 // @UseInterceptors(new LoggingInterceptor())
 // @UseFilters(new HTTPExceptionFilter())
 @Controller('users')
@@ -123,9 +123,9 @@ export class UsersController {
     async userItem(@Body() addUserDto: AddUserDto, @Param('userId') userId, @Req() request, @Res() res) {
         console.log('request.param===>>>', request.params);
         // return [{ id: 1, name: '哈啊哈', age: 18, flag: `userId：${userId}` }]; // 使用了 @Res 后就必须用 res 返回，不然无法返回
-        // res.status(HttpStatus.OK).json(['你瞅啥', `This action returns a #${userId}`]);
+        res.status(HttpStatus.OK).json(['你瞅啥', `This action returns a #${userId}`]);
         // throw new HttpException({ status: HttpStatus.FORBIDDEN, error: '我是 403 哇哈哈哈哈' }, HttpStatus.FORBIDDEN);
-        throw new ForbiddenException('我是 403 哇哈哈哈哈');
+        // throw new ForbiddenException('我是 403 哇哈哈哈哈');
     }
 
     // @Post('findOne')
