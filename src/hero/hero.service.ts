@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { HeroEntity } from '../common/entities/hero.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -26,16 +26,21 @@ export class HeroService {
         //     factionCode: faction[0].factionCode,
         // });
         // console.log('newFaction===>>>', newFaction);
-        hero.faction = {
-            id: 1,
-            factionCode: 'ZY_DMXY',
-        };
-        const newhero = this.heroRepository.create(hero);
-        console.log('newhero===>>>', newhero);
-        // newhero.faction = newFaction;
+        try {
+            hero.faction = {
+                id: 1,
+                factionCode: 'ZY_DMXY',
+            };
+            const newhero = this.heroRepository.create(hero);
+            console.log('newhero===>>>', newhero);
+            // newhero.faction = newFaction;
 
-        await this.heroRepository.save(newhero);
-        return newhero;
+            await this.heroRepository.save(newhero);
+            return newhero;
+        } catch (error) {
+            throw new InternalServerErrorException(error);
+
+        }
     }
 
     /**

@@ -2,7 +2,9 @@ import { HeroEntity } from './entities/hero.entity';
 import { UserEntity } from './entities/user.entity';
 import { FactionEntity } from './entities/faction.entity';
 import { TeamEntity } from './entities/team.entity';
-
+/**
+ * 不可直接实例使用，只能通过 Constants 中实例使用
+ */
 export class DbConstants {
     readonly entities: any[] = [UserEntity, HeroEntity, FactionEntity, TeamEntity];
     // db 数据库链接注入常量

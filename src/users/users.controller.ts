@@ -40,9 +40,11 @@ import { TimeoutInterceptor } from '../common/interceptors/timeout.interceptor';
 import { User } from '../decorators/user.decorator';
 import { AuthService } from '../auth/auth.service';
 import { CreateUserDto } from './dto/createUser.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiUseTags('用户')
 @ApiBearerAuth()
+@UseGuards(AuthGuard('myJwt'))
 @UseGuards(RolesGuard)
 // @UseInterceptors(LoggingInterceptor)
 // @UseInterceptors(TransformInterceptor)

@@ -4,9 +4,11 @@ import { HeroService } from './hero.service';
 import { HerorDto } from './dto/hero.dto';
 import { HeroEntity } from '../common/entities/hero.entity';
 import { FactionEntity } from '../common/entities/faction.entity';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiUseTags('英雄')
-// @ApiBearerAuth()
+@ApiBearerAuth()
+@UseGuards(AuthGuard('myJwt'))
 @Controller('hero')
 export class HeroController {
     constructor(private readonly heroService: HeroService) {}
@@ -55,7 +57,7 @@ export class HeroController {
         if (hero && hero.factionFactionCode) {
             return this.heroService.singleFaction(hero.factionFactionCode);
         } else {
-            throw new BadRequestException('入参获取失败，请核对入参字段');
+            throw new BadRequestException();
         }
     }
 }

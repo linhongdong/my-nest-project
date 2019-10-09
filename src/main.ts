@@ -13,6 +13,9 @@ import { HeroModule } from './hero/hero.module';
 import { Transport } from '@nestjs/common/enums/transport.enum';
 import { MicroServiceModule } from './microservice/microservice.module';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
+// import { AuthGuard } from '@nestjs/passport';
+// import { RolesGuard } from './guards/roles.guard';
+// import { MyAuthGuard } from './guards/auth.guard';
 
 declare const module: any;
 
@@ -31,6 +34,8 @@ async function bootstrap() {
     app.useGlobalInterceptors(new TransformInterceptor()); // 全局拦截器
     // const { httpAdapter } = app.get(HttpAdapterHost);
     // app.useGlobalFilters(new AllExceptionsFilter(httpAdapter)); // 基础过滤器
+    // app.useGlobalGuards(new RolesGuard(null));
+    // app.useGlobalGuards(new MyAuthGuard()); // 全局守卫
 
     const apiOptions = new DocumentBuilder()
         .setTitle('Test API Doc')

@@ -10,8 +10,8 @@ export class Config {
 
     // jwt 秘钥 (警告 不要公开公开此密钥。 我们这里已经这样做，以明确代码正在做什么，但在生产系统中，您必须使用适当的措施保护此密钥，例如秘密保险库，环境变量或配置服务）。
     static readonly jwtSecret: string = 'secretKey';
-    // jwt 有效期
-    static readonly jwtExpiresIn: string = '600s';
+    // jwt 有效期（七天）
+    static readonly jwtExpiresIn: string = 60 * 60 * 24 * 7 + 's';
     /**
      * 连接 mysql 数据库配置信息
      * type 数据库类型

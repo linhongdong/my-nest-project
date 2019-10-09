@@ -21,7 +21,7 @@ export class AuthService {
         const payload = { username: user.username, sub: user.userId };
         console.log('payload===>>>', this.jwtService.sign(payload));
         return {
-            access_token: this.jwtService.sign(payload),
+            access_token: this.jwtService.sign(payload),  // 签发token
         };
     }
 }

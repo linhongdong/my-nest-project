@@ -50,7 +50,7 @@ export class TransformInterceptor<T> implements NestInterceptor<T, ResultInterfa
         // return { code: HttpStatus.NO_CONTENT, message: '没有查询到数据', data: null };
         const result: ResultInterface<null> = {
             timestamp: time,
-            statusCode: HttpStatus.NO_CONTENT,
+            code: HttpStatus.NO_CONTENT,
             message: Constants.NO_DATA_FOUND,
             data: null,
         };
@@ -63,7 +63,7 @@ export class TransformInterceptor<T> implements NestInterceptor<T, ResultInterfa
     private normalContent(data: T, time: string) {
         const result: ResultInterface<T> = {
             timestamp: time,
-            statusCode: HttpStatus.OK,
+            code: HttpStatus.OK,
             message: Constants.REQUEST_SUCCESS,
             data,
         };

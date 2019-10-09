@@ -28,7 +28,7 @@ export class AppModule implements NestModule {
     constructor(private readonly connection: Connection) {}
 
     configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {
-        console.log('MiddlewareConsumer ===>>>');
+        // console.log('MiddlewareConsumer ===>>>');
         consumer
             .apply(LoggerMiddleware)
             // .with('AppModule')
