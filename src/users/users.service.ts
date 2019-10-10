@@ -23,23 +23,23 @@ export class UsersService implements OnModuleInit {
         { id: 5, name: '内瑟斯', age: 18, epithet: '沙漠死神', nickname: '狗头🐶' },
         { id: 6, name: '雷克顿', age: 18, epithet: '荒漠屠夫', nickname: '鳄鱼🐊' },
     ];
-    private readonly users: LoginDto[] = [
-        {
-            userId: '1',
-            username: 'john',
-            password: 'changeme',
-        },
-        {
-            userId: '2',
-            username: 'chris',
-            password: 'secret',
-        },
-        {
-            userId: '3',
-            username: 'maria',
-            password: 'guess',
-        },
-    ];
+    // private readonly users: LoginDto[] = [
+    //     {
+    //         userId: '1',
+    //         username: 'john',
+    //         password: 'changeme',
+    //     },
+    //     {
+    //         userId: '2',
+    //         username: 'chris',
+    //         password: 'secret',
+    //     },
+    //     {
+    //         userId: '3',
+    //         username: 'maria',
+    //         password: 'guess',
+    //     },
+    // ];
 
     async createUser(user: CreateUserDto) {
         // this.userList.push(user);
@@ -66,9 +66,9 @@ export class UsersService implements OnModuleInit {
         return this.userList;
     }
 
-    async findOne(username: string): Promise<LoginDto | undefined> {
-        return this.users.find(user => user.username === username);
-    }
+    // async findOne(username: string): Promise<LoginDto | undefined> {
+    //     return this.users.find(user => user.username === username);
+    // }
 
     async findAll(): Promise<UserEntity[]> {
         // const username: string = 'lhd';

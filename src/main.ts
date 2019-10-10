@@ -4,7 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { UsersModule } from './users/users.module';
 import { Logger } from '@nestjs/common';
 import { LoggerMiddleware } from './middleware/logger.middleware';
-import { HTTPExceptionFilter } from './common/exceptions/HTTPException.filter';
+import { HttpExceptionFilter } from './common/exceptions/httpException.filter';
 import { AllExceptionsFilter } from './common/exceptions/allExceptions.filter';
 import { ValidationPipe } from './pipes/validation.pipe';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
@@ -28,7 +28,7 @@ async function bootstrap() {
 
     // 全局前缀
     app.setGlobalPrefix('dev');
-    app.useGlobalFilters(new HTTPExceptionFilter()); // 全局过滤器
+    app.useGlobalFilters(new HttpExceptionFilter()); // 全局过滤器
     // app.useGlobalPipes(new ValidationPipe());
     // app.useGlobalInterceptors(new LoggingInterceptor()); // 全局拦截器
     app.useGlobalInterceptors(new TransformInterceptor()); // 全局拦截器
@@ -43,15 +43,17 @@ async function bootstrap() {
         .setVersion('1.0')
         // .addBearerAuth('lhd')
         .addBearerAuth()
-        // .addTag('users') // match tags in controllers
+        .addTag('认证') // match tags in controllers
+        // .addTag('英雄')
         .setContactEmail('1625125333@qq.com')
         // 设置基础路径  与全局的前缀对应，不设置是没有的
         .setBasePath('dev')
         .build();
 
-    const document = SwaggerModule.createDocument(app, apiOptions, {
-        include: [AuthModule, HeroModule, UsersModule, MicroServiceModule],
-    });
+    // const document = SwaggerModule.createDocument(app, apiOptions, {
+    //     include: [AuthModule, HeroModule, UsersModule, MicroServiceModule],
+    // });
+    const document = SwaggerModule.createDocument(app, apiOptions);
     SwaggerModule.setup('swagger/api/', app, document);
 
     // app.use(Logger);

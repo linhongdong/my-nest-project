@@ -2,7 +2,7 @@ import { ApiModelProperty } from '@nestjs/swagger';
 
 export class LoginDto {
     @ApiModelProperty({
-        description: '登录用户 ID',
+        description: '登录用户（用户名、手机号、ID）',
         example: '3',
     })
     readonly userId: string;
@@ -14,13 +14,13 @@ export class LoginDto {
     })
     readonly password: string;
 
-    @ApiModelProperty({
-        description: '登录用户名',
-        example: 'maria',
-        required: true,
-    })
-    // 不能使用 userName 驼峰命名，会报错，报 401，错误信息如下
-    readonly username: string;
+    // @ApiModelProperty({
+    //     description: '登录用户名',
+    //     example: 'maria',
+    //     required: true,
+    // })
+    // // 不能使用 userName 驼峰命名，会报错，报 401，错误信息如下
+    // readonly username: string;
 
     //  全基础过滤器 AllExceptionsFilter===>>> { Error: [object Object]
     //     at MixinAuthGuard.handleRequest (/Users/dhc/demo/nodejs/my-nest-project/node_modules/@nestjs/passport/dist/auth.guard.js:63:30)
