@@ -3,13 +3,13 @@ import { ApiModelProperty } from '@nestjs/swagger';
 export class LoginDto {
     @ApiModelProperty({
         description: '登录用户（用户名、手机号、ID）',
-        example: '3',
+        example: '12312341234',
     })
     readonly userId: string;
 
     @ApiModelProperty({
         description: '登录用户密码',
-        example: 'guess',
+        example: '123qwe',
         required: true,
     })
     readonly password: string;

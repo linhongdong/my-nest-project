@@ -7,6 +7,7 @@ export class Constants {
     // 接口返回提示新信息
     static readonly REQUEST_SUCCESS: string = '成功';
     static readonly NO_DATA_FOUND: string = '没有查询到数据';
+    static readonly NO_DATA_ERROR: string = 'no data found';
     static readonly UNAUTHORIZED: string = '权限验证失败，请请重新登录';
     static readonly SERVER_INTERNAL_ERROR: string = '服务器内部错误';
     static readonly BAD_REQUEST: string = '错误请求，参数获取失败';

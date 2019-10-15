@@ -17,7 +17,7 @@ export class UserEntity {
 
     @ApiModelProperty({
         description: '登录密码',
-        example: ' 123qwe',
+        example: '123qwe',
     })
     @Column({
         comment: '登录密码',
@@ -32,7 +32,7 @@ export class UserEntity {
         comment: '邮箱',
         nullable: true,
     })
-    UserEmail: string;
+    userEmail: string;
 
     @ApiModelProperty({
         description: '手机号',

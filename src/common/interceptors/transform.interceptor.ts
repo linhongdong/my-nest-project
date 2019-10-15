@@ -26,7 +26,7 @@ export class TransformInterceptor<T> implements NestInterceptor<T, ResultInterfa
         // return next.handle();
         return next.handle().pipe(
             map(data => {
-                console.log('TransformInterceptor===>>>', data);
+                // console.log('TransformInterceptor===>>>', data);
                 const time = new Date().toLocaleString();
                 res.header('Date', time);
                 // console.log('data===>>>', data);
