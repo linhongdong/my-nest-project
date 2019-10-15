@@ -16,7 +16,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
             const timestamp = new Date().toLocaleString();
             res.header('Date', timestamp);
             // res.json(error);
-            console.log('http全局过滤器 HTTPExceptionFilter===>>>', error);
+            // console.log('http全局过滤器 HTTPExceptionFilter===>>>', error);
             // const message: string = 401 === status ? '权限验证失败，请请重新登录' : null;
             const message: string =
                 exception.message && exception.message.message
