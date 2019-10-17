@@ -1,10 +1,12 @@
-import { Request, Post, Controller, UseGuards, Body, Get, UnauthorizedException } from '@nestjs/common';
+import { Request, Post, Controller, UseGuards, Body, Get, Req, InternalServerErrorException } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiUseTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
 import { AuthService } from './auth.service';
 import { UserEntity } from '../common/entities/user.entity';
 import { JwtPayloadDto } from './dto/jwtPayload.dto';
+import { Required } from '../common/decorators/required.decorator';
+import { AllRequired } from '../common/decorators/allRequired.decorator';
 
 @ApiUseTags('认证')
 @ApiBearerAuth()
@@ -20,18 +22,13 @@ export class AuthController {
         deprecated: false, // 是否弃用，默认 false
     })
     @Post('login')
-    async login(@Body() loginDto: LoginDto) {
-        // console.log('login===>>>', req.user);
-        // return req.user;
-        // return this.authService.validateUser(loginDto.username, loginDto.password);
-        // return this.authService.login(loginDto);
+    async login(@Body() @Required(['userId', 'password']) loginDto: LoginDto) {
         // 验证用户
         const user: JwtPayloadDto = await this.authService.validateUser(loginDto);
-        // return user;
         if (!!user) {
             return this.authService.login(user);
         } else {
-            throw new UnauthorizedException();
+            throw new InternalServerErrorException();
         }
     }
 
@@ -41,7 +38,7 @@ export class AuthController {
         operationId: '注册用户',
     })
     @Post('register')
-    async register(@Body() user: UserEntity) {
+    async register(@Body() @AllRequired() user: UserEntity) {
         return this.authService.createUser(user);
     }
 

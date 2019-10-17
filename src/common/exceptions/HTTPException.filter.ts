@@ -1,6 +1,7 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { ResultInterface } from '../interfaces/result.interface';
 import { Utils } from '../utils';
+import { EmptyException } from './empty.exception';
 
 // @Catch(HttpException)
 @Catch()
@@ -9,11 +10,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
         console.log('http全局过滤器 HTTPExceptionFilter===>>>', exception);
         const ctx = host.switchToHttp();
         const res = ctx.getResponse();
+        const timestamp = new Date().toLocaleString();
         // const req = ctx.getRequest();
-        if (exception && exception.getStatus) {
+        try {
             const status = exception.getStatus();
             const error = exception.getResponse();
-            const timestamp = new Date().toLocaleString();
             res.header('Date', timestamp);
             // res.json(error);
             // console.log('http全局过滤器 HTTPExceptionFilter===>>>', error);
@@ -41,6 +42,17 @@ export class HttpExceptionFilter implements ExceptionFilter {
                 error,
             };
             res.status(status).json(result);
+        } catch (err) {
+            const error = err.message || err || null;
+            // 服务器内部错误
+            const result: ResultInterface<null> = {
+                code: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: exception.message.error || exception.message || null,
+                data: null,
+                timestamp,
+                error,
+            };
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(result);
         }
     }
 }

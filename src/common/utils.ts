@@ -1,4 +1,5 @@
 import { Constants } from './constants';
+import { string } from '@hapi/joi';
 
 /**
  * 工具类
@@ -21,6 +22,45 @@ export class Utils {
             default:
                 return null;
         }
+    }
+    /**
+     * 返回 false 时，每个属性值都存在；
+     * 某个属性值为 null undefined '' 时，返回该属性 key
+     * @param params 要校验的对象
+     */
+    static isEachFieldValueIsEmpty(params: object) {
+        for (const key in params) {
+            if (params.hasOwnProperty(key)) {
+                const value = params[key];
+                if (null === value || undefined === value || '' === value) {
+                    return key;
+                }
+            }
+        }
+        return false;
+    }
+    /**
+     *  返回 false 时，该属性值存在；
+     * 属性值为 null undefined '' 时，返回该属性 key
+     * @param params 要校验的对象
+     * @param keys 要校验的对象
+     */
+    static isFieldCannotEmpty(params: object, keys: string[] | string) {
+        if (Array.isArray(keys)) {
+            for (const key of keys) {
+                const value = params[key];
+                if (null === value || undefined === value || '' === value) {
+                    return key;
+                }
+            }
+        }
+        if ('string' === typeof keys) {
+            const value = params[keys];
+            if (null === value || undefined === value || '' === value) {
+                return keys;
+            }
+        }
+        return false;
     }
 }
 /**

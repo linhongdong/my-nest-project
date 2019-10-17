@@ -30,13 +30,12 @@ import { JoiValidationPipe } from '../pipes/joiValidation.pipe';
 import { ValidationPipe } from '../pipes/validation.pipe';
 import { ParseIntPipe } from '../pipes/parseInt.pipe';
 import { RolesGuard } from '../guards/roles.guard';
-import { Roles } from '../decorators/roles.decorator';
+import { Roles } from '../common/decorators/roles.decorator';
 import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../common/interceptors/transform.interceptor';
 import { ExcludeNullInterceptor } from '../common/interceptors/excludeNull.interceptor';
 import { ErrorsInterceptor } from '../common/interceptors/errors.interceptor';
 import { TimeoutInterceptor } from '../common/interceptors/timeout.interceptor';
-import { User } from '../decorators/user.decorator';
 import { AuthService } from '../auth/auth.service';
 import { CreateUserDto } from './dto/createUser.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -77,7 +76,7 @@ export class UsersController {
     }
 
     @Post('userList2')
-    async userList2(@Body() usersDetailsDto: UserDetailsDto, @User('roleCode') user: Users) {
+    async userList2(@Body() usersDetailsDto: UserDetailsDto, user: Users) {
         // console.log('===>>>', request.body);
         console.log('user ===>>>', user);
         return this.userService.getUserList();

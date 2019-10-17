@@ -12,6 +12,7 @@ export class Constants {
     static readonly SERVER_INTERNAL_ERROR: string = '服务器内部错误';
     static readonly BAD_REQUEST: string = '错误请求，参数获取失败';
     static readonly NOT_FOUND: string = '请求地址不存在';
+    static readonly FIELD_CANNOT_EMPTY: string = '字段不能为空';
 }
 // export const jwtConstants: object = {
 //     secret: 'secretKey',

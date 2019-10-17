@@ -78,19 +78,19 @@ export class AuthService {
      * @param user 用户信息
      */
     async createUser(user: UserEntity) {
-        if (user && user.userPhone && user.password && user.userEmail && user.userName) {
-            const phones: UserEntity[] = await this.wherePhoneGetUser(user.userPhone);
-            if (phones && phones.length > 0) {
-                throw new EmptyException('该手机号已被占用');
-            }
-            const emails: UserEntity[] = await this.whereEmailGetUser(user.userEmail);
-            if (emails && emails.length > 0) {
-                throw new EmptyException('该邮箱已被占用');
-            }
-            const userInfo = await this.userRepository.save(user);
-            return { userInfo, result: true, msg: '注册成功' };
-        } else {
-            throw new BadRequestException();
+        // if (user && user.userPhone && user.password && user.userEmail && user.userName) {
+        const phones: UserEntity[] = await this.wherePhoneGetUser(user.userPhone);
+        if (phones && phones.length > 0) {
+            throw new EmptyException('该手机号已被占用');
         }
+        const emails: UserEntity[] = await this.whereEmailGetUser(user.userEmail);
+        if (emails && emails.length > 0) {
+            throw new EmptyException('该邮箱已被占用');
+        }
+        const userInfo = await this.userRepository.save(user);
+        return { userInfo, result: true, msg: '注册成功' };
+        // } else {
+        //     throw new BadRequestException();
+        // }
     }
 }
