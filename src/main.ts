@@ -6,7 +6,7 @@ import { Logger } from '@nestjs/common';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { HttpExceptionFilter } from './common/exceptions/httpException.filter';
 import { AllExceptionsFilter } from './common/exceptions/allExceptions.filter';
-import { ValidationPipe } from './pipes/validation.pipe';
+import { ValidationPipe } from './common/pipes/validation.pipe';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { HeroModule } from './hero/hero.module';
