@@ -77,6 +77,11 @@ const createParamDecorator = (factory: CustomParamFactory) => {
         Reflect.defineMetadata('__routeArguments__', assignCustomMetadata, target.constructor, propertyKey);
     };
 };
+/**
+ * 创建自定义装饰器
+ * 校验字段必填
+ * 注：使用 pipe 可以实现该用途
+ */
 export const AllRequired = createParamDecorator((data, req) => {
     const params = req.body;
     if (Object.keys(params).length > 0) {

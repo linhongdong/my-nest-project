@@ -3,7 +3,7 @@ import { MicroServiceService } from './microservice.service';
 import { MessagePattern, EventPattern, ClientProxy, Transport, Client } from '@nestjs/microservices';
 import { ApiUseTags, ApiImplicitQuery } from '@nestjs/swagger';
 import { Observable, from } from 'rxjs';
-import { ValidationPipe } from '../pipes/validation.pipe';
+import { ValidationPipe } from '../common/pipes/validation.pipe';
 
 @ApiUseTags('微服务')
 @Controller('microservice')
