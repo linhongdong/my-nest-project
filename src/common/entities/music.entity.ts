@@ -16,13 +16,13 @@ export class MusicEntity {
     musicName: string;
 
     @ApiModelProperty({
-        description: '歌曲演唱者（歌手）',
+        description: '演唱者（歌手）',
         example: '魏新雨',
     })
     @Column({
-        comment: '歌曲演唱者（歌手）',
+        comment: '演唱者（歌手）',
     })
-    factionName: string;
+    singer: string;
 
     @ApiModelProperty({
         description: '所属专辑',

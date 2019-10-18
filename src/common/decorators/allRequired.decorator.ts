@@ -1,7 +1,7 @@
 import { CustomParamFactory } from '@nestjs/common/interfaces';
 import { EmptyException } from '../exceptions/empty.exception';
 import { Utils } from '../utils';
-import { Constants } from '../constants';
+import { Constants } from '../constants/constants';
 
 // export function Necessary() {
 //     console.log('Necessary ===>>>');

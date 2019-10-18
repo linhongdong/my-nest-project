@@ -28,7 +28,6 @@ import { UsersService } from './users.service';
 import { HttpExceptionFilter } from '../common/exceptions/httpException.filter';
 import { JoiValidationPipe } from '../common/pipes/joiValidation.pipe';
 import { ValidationPipe } from '../common/pipes/validation.pipe';
-import { ParseIntPipe } from '../common/pipes/parseInt.pipe';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles.decorator';
 import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
@@ -88,7 +87,7 @@ export class UsersController {
     // @UsePipes(new ValidationPipe())
     @UsePipes(ValidationPipe)
     @ApiResponse({ status: 200, description: '请求成功' })
-    async userDetails(@Body(new ParseIntPipe()) usersDetailsDto: UserDetailsDto, @Req() request) {
+    async userDetails(@Body() usersDetailsDto: UserDetailsDto, @Req() request) {
         // console.log('request.body===>>>', request.body);
         return [{ id: 1, name: '盲僧瞎子啊', age: 18, flag: 'userDetails' }];
         // return null;

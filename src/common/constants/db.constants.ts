@@ -1,8 +1,8 @@
-import { HeroEntity } from './entities/hero.entity';
-import { UserEntity } from './entities/user.entity';
-import { FactionEntity } from './entities/faction.entity';
-import { TeamEntity } from './entities/team.entity';
-import { MusicEntity } from './entities/music.entity';
+import { HeroEntity } from '../entities/hero.entity';
+import { UserEntity } from '../entities/user.entity';
+import { FactionEntity } from '../entities/faction.entity';
+import { TeamEntity } from '../entities/team.entity';
+import { MusicEntity } from '../entities/music.entity';
 /**
  * 不可直接实例使用，只能通过 Constants 中实例使用
  */

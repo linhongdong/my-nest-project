@@ -1,7 +1,7 @@
 import { Injectable, NestInterceptor, ExecutionContext, CallHandler, HttpStatus } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Constants } from '../constants';
+import { Constants } from '../constants/constants';
 import { ResultInterface } from '../interfaces/result.interface';
 
 // export interface Response<T> {

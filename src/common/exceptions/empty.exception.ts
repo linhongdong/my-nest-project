@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { Constants } from '../constants';
+import { Constants } from '../constants/constants';
 
 export class EmptyException extends HttpException {
     constructor(message: any = Constants.NO_DATA_FOUND, error: any = null, status: number = HttpStatus.OK) {

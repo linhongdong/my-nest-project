@@ -1,4 +1,4 @@
-import { Constants } from './constants';
+import { Constants } from './constants/constants';
 import { string } from '@hapi/joi';
 
 /**

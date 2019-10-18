@@ -7,11 +7,12 @@ import { UsersController } from './users/users.controller';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-import { Constants } from './common/constants';
+import { Constants } from './common/constants/constants';
 import { HeroModule } from './hero/hero.module';
 import { MicroServiceModule } from './microservice/microservice.module';
 // import { HeroController } from './hero/hero.controller';
 import { Config } from './config';
+import { MusicModule } from './music/music.module';
 
 @Module({
     imports: [
@@ -20,6 +21,7 @@ import { Config } from './config';
         AuthModule,
         HeroModule,
         MicroServiceModule,
+        MusicModule,
     ],
     controllers: [AppController],
     providers: [AppService],

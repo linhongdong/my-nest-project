@@ -1,7 +1,7 @@
 import { CustomParamFactory } from '@nestjs/common/interfaces';
 import { EmptyException } from '../exceptions/empty.exception';
 import { Utils } from '../utils';
-import { Constants } from '../constants';
+import { Constants } from '../constants/constants';
 import { createParamDecorator } from '@nestjs/common';
 
 export const Required = createParamDecorator((data, req) => {
