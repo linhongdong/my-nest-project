@@ -79,8 +79,9 @@ const createParamDecorator = (factory: CustomParamFactory) => {
 };
 /**
  * 创建自定义装饰器
- * 校验字段必填
+ * 校验全部字段必填
  * 注：使用 pipe 可以实现该用途
+ * 注意：已废弃，应使用 RequiredPipe
  */
 export const AllRequired = createParamDecorator((data, req) => {
     const params = req.body;

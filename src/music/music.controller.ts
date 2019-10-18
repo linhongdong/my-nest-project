@@ -3,6 +3,7 @@ import { ApiUseTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { MusicService } from './music.service';
 import { MusicEntity } from '../common/entities/music.entity';
+import { RequiredPipe } from '../common/pipes/required.pipe';
 
 @ApiUseTags('音乐')
 @ApiBearerAuth()
@@ -17,8 +18,9 @@ export class MusicController {
         operationId: '创建一首歌曲',
     })
     @Post('createMusic')
-    async createMusic(@Body() music: MusicEntity) {
+    async createMusic(@Body(new RequiredPipe()) music: MusicEntity) {
         // console.log('login===>>>', req.user);
-        return this.musicService.createMusic(music);
+        return music;
+        // return this.musicService.createMusic(music);
     }
 }

@@ -10,7 +10,7 @@ export class MusicEntity {
         description: '歌曲名称',
         example: '余情未了',
     })
-    @PrimaryColumn({
+    @Column({
         comment: '歌曲名称',
     })
     musicName: string;
@@ -23,51 +23,6 @@ export class MusicEntity {
         comment: '演唱者（歌手）',
     })
     singer: string;
-
-    @ApiModelProperty({
-        description: '所属专辑',
-        example: '余情未了',
-    })
-    @Column({
-        comment: '所属专辑',
-    })
-    album: string;
-
-    @ApiModelProperty({
-        description: '发行年份',
-        example: '2019-05-21',
-    })
-    @Column({
-        comment: '发行年份',
-    })
-    releaseYear: string;
-
-    @ApiModelProperty({
-        description: '格式',
-        example: 'mp3',
-    })
-    @Column({
-        comment: '格式',
-    })
-    format: string;
-
-    @ApiModelProperty({
-        description: '时长',
-        example: '3:26',
-    })
-    @Column({
-        comment: '时长',
-    })
-    duration: string;
-
-    @ApiModelProperty({
-        description: '音频大小',
-        example: '3.5BM',
-    })
-    @Column({
-        comment: '音频大小',
-    })
-    size: string;
 
     @ApiModelProperty({
         description: '音频地址',
@@ -139,8 +94,59 @@ export class MusicEntity {
     })
     @Column({
         comment: '歌词',
+        nullable: true,
     })
     lyrics: string;
+
+    @ApiModelProperty({
+        description: '所属专辑',
+        example: '余情未了',
+    })
+    @Column({
+        comment: '所属专辑',
+        nullable: true,
+    })
+    album: string;
+
+    @ApiModelProperty({
+        description: '发行年份',
+        example: '2019-05-21',
+    })
+    @Column({
+        comment: '发行年份',
+        nullable: true,
+    })
+    releaseYear: string;
+
+    @ApiModelProperty({
+        description: '格式',
+        example: 'mp3',
+    })
+    @Column({
+        comment: '格式',
+        nullable: true,
+    })
+    format: string;
+
+    @ApiModelProperty({
+        description: '时长',
+        example: '3:26',
+    })
+    @Column({
+        comment: '时长',
+        nullable: true,
+    })
+    duration: string;
+
+    @ApiModelProperty({
+        description: '音频大小',
+        example: '3.5BM',
+    })
+    @Column({
+        comment: '音频大小',
+        nullable: true,
+    })
+    size: string;
 
     @ApiModelProperty({
         description: '歌词作者',
@@ -148,6 +154,7 @@ export class MusicEntity {
     })
     @Column({
         comment: '歌词作者',
+        nullable: true,
     })
     lyricsAuthor: string;
 
