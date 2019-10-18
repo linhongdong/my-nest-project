@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/c
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
-import { LoggerMiddleware } from './middleware/logger.middleware';
+import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { UsersController } from './users/users.controller';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -10,7 +10,7 @@ import { Connection } from 'typeorm';
 import { Constants } from './common/constants';
 import { HeroModule } from './hero/hero.module';
 import { MicroServiceModule } from './microservice/microservice.module';
-import { HeroController } from './hero/hero.controller';
+// import { HeroController } from './hero/hero.controller';
 import { Config } from './config';
 
 @Module({

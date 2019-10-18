@@ -29,7 +29,7 @@ import { HttpExceptionFilter } from '../common/exceptions/httpException.filter';
 import { JoiValidationPipe } from '../common/pipes/joiValidation.pipe';
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParseIntPipe } from '../common/pipes/parseInt.pipe';
-import { RolesGuard } from '../guards/roles.guard';
+import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles.decorator';
 import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../common/interceptors/transform.interceptor';

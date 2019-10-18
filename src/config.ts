@@ -35,6 +35,6 @@ export class Config {
         database: 'my_nest',
         logging: true,
         entityPrefix: 'mn_',
-        synchronize: false,
+        synchronize: true,
     };
 }

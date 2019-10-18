@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { UsersModule } from './users/users.module';
 import { Logger } from '@nestjs/common';
-import { LoggerMiddleware } from './middleware/logger.middleware';
+import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { HttpExceptionFilter } from './common/exceptions/httpException.filter';
 import { AllExceptionsFilter } from './common/exceptions/allExceptions.filter';
 import { ValidationPipe } from './common/pipes/validation.pipe';

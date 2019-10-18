@@ -30,7 +30,6 @@ export class UserEntity {
     })
     @Column({
         comment: '邮箱',
-        nullable: true,
     })
     userEmail: string;
 
@@ -40,7 +39,6 @@ export class UserEntity {
     })
     @Column({
         comment: ' 手机号',
-        nullable: true,
     })
     userPhone: string;
 
