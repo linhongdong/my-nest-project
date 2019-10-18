@@ -6,7 +6,7 @@ import { Constants } from '../constants/constants';
  * 校验全部字段必填
  */
 @Injectable()
-export class RequiredPipe implements PipeTransform<string, number> {
+export class AllRequiredPipe implements PipeTransform<string, number> {
     transform(data: any, metadata: ArgumentMetadata): number {
         // console.log('metadata ===>>>', metadata);
         if (Object.keys(data).length > 0) {

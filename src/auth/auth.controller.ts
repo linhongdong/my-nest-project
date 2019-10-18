@@ -7,7 +7,7 @@ import { UserEntity } from '../common/entities/user.entity';
 import { JwtPayloadDto } from './dto/jwtPayload.dto';
 import { Required } from '../common/decorators/required.decorator';
 import { AllRequired } from '../common/decorators/allRequired.decorator';
-import { RequiredPipe } from '../common/pipes/required.pipe';
+import { AllRequiredPipe } from '../common/pipes/allRequired.pipe';
 
 @ApiUseTags('认证')
 @ApiBearerAuth()
@@ -39,7 +39,7 @@ export class AuthController {
         operationId: '注册用户',
     })
     @Post('register')
-    async register(@Body(new RequiredPipe()) user: UserEntity) {
+    async register(@Body(new AllRequiredPipe()) user: UserEntity) {
         return this.authService.createUser(user);
     }
 
