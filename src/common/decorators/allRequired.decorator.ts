@@ -1,7 +1,7 @@
 import { CustomParamFactory } from '@nestjs/common/interfaces';
-import { EmptyException } from '../exceptions/empty.exception';
 import { Utils } from '../utils';
 import { Constants } from '../constants/constants';
+import { BadRequestException } from '@nestjs/common';
 
 // export function Necessary() {
 //     console.log('Necessary ===>>>');
@@ -88,11 +88,11 @@ export const AllRequired = createParamDecorator((data, req) => {
     if (Object.keys(params).length > 0) {
         const key = Utils.isEachFieldValueIsEmpty(params);
         if (key) {
-            throw new EmptyException(`${key} ${Constants.FIELD_CANNOT_EMPTY}`);
+            throw new BadRequestException(`${key} ${Constants.FIELD_CANNOT_EMPTY}`);
         } else {
             return req.body;
         }
     } else {
-        throw new EmptyException(Constants.FIELD_CANNOT_EMPTY);
+        throw new BadRequestException(Constants.FIELD_CANNOT_EMPTY);
     }
 });

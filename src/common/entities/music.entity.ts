@@ -3,6 +3,10 @@ import { ApiModelProperty } from '@nestjs/swagger';
 
 @Entity('music')
 export class MusicEntity {
+    @ApiModelProperty({
+        description: '歌曲 id',
+        example: 0,
+    })
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -94,6 +98,7 @@ export class MusicEntity {
     })
     @Column({
         comment: '歌词',
+        length: 5000, // 列类型的长度
         nullable: true,
     })
     lyrics: string;
