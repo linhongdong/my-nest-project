@@ -9,7 +9,7 @@ export class QueryMusicListInfoDto {
 
     @ApiModelProperty({
         description: '歌手',
-        example: '魏新雨',
+        example: '',
         required: true,
     })
     readonly singer: string;
